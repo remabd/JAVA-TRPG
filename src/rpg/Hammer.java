@@ -6,4 +6,7 @@ public class Hammer extends Weapon {
     super();
   }
   
+  public String asciiArt() {
+    return "Hammer";
+  }
 }

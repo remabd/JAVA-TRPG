@@ -7,15 +7,15 @@ public class Bow extends Weapon {
   }
 
   public String asciiArt() {
-    return 
-    "    /| \n" +
-    "   / | \n" +
-    "  /  | \n" +
-    " |   | \n" +
-    " \   | \n" +
-    "  \  | \n" +
-    "   \ | \n" +
-    "    \| \n"
-    ;
+    return "bow";
+    // "    /| \n" +
+    // "   / | \n" +
+    // "  /  | \n" +
+    // " |   | \n" +
+    // " \   | \n" +
+    // "  \  | \n" +
+    // "   \ | \n" +
+    // "    \| \n"
+    // ;
   }
 }

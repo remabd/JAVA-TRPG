@@ -3,6 +3,8 @@ package rpg;
 public abstract class Weapon {
   private int damage;
 
+  public Weapon() {}
+
   public Weapon(int d) {
     this.damage = d;
   }
@@ -11,5 +13,5 @@ public abstract class Weapon {
     return this.damage;
   }
 
-  public abstract String asciiArt() {};
+  public abstract String asciiArt();
 }
