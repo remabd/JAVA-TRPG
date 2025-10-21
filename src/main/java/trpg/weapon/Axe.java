@@ -1,4 +1,4 @@
-package rpg;
+package trpg.weapon;
 
 public class Axe extends Weapon {
   public static double MONSTER_DAMAGE_RATIO = 1.2;
@@ -10,12 +10,12 @@ public class Axe extends Weapon {
 
   public String asciiArt() {
     return "axe";
-  //   " /''\/\ \n" +
-  //   "|    ||>\n" +
-  //   "\___/|| \n" +
-  //   "     || \n" +
-  //   "     || \n" +
-  //   "     || \n" +
-  //   "     -  \n";
+    // " /''\/\ \n" +
+    // "| ||>\n" +
+    // "\___/|| \n" +
+    // " || \n" +
+    // " || \n" +
+    // " || \n" +
+    // " - \n";
   }
 }

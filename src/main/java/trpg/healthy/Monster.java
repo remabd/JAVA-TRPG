@@ -1,4 +1,4 @@
-package rpg;
+package trpg.healthy;
 
 public class Monster extends Healthy {
   private int hp;
@@ -16,5 +16,5 @@ public class Monster extends Healthy {
   public void takeDamage(Weapon w) {
     this.hp -= w.getDamage();
   }
-  
+
 }

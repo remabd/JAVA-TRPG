@@ -1,4 +1,4 @@
-package rpg;
+package trpg.healthy;
 
 public class Obstacle extends Healthy {
   private int hp;
