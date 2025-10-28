@@ -1,13 +1,13 @@
-package t.rpg.map;
+package trpg.map;
 
-public abstract class Tile<E> {
-  private int position;
+public class Tile<E> {
+  private Position position;
   private E event;
 
   public Tile() {
   };
 
-  public Tile(E e, int p) {
+  public Tile(E e, Position p) {
     this.position = p;
     this.event = e;
   }
@@ -15,4 +15,9 @@ public abstract class Tile<E> {
   public String toString() {
     return "|_E_|";
   }
+
+  public String getEventType() {
+    return typeof(this.event);
+  }
+
 }

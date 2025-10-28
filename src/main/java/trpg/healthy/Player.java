@@ -2,16 +2,17 @@ package trpg.healthy;
 
 import java.util.ArrayList;
 
+import trpg.map.*;
 import trpg.weapon.*;
 
-public class Player {
+public class Player implements Positionnable {
   private int hp;
   private int mp;
   private int gold;
   private int lvl;
   private int xp;
   private Weapon weapon;
-  private int position;
+  private Position position;
   private ArrayList<Weapon> inventory;
 
   public Player() {
@@ -35,4 +36,13 @@ public class Player {
       this.weapon = w;
     }
   }
+
+  public Position getPosition() {
+    return this.position;
+  }
+
+  public void setPosition(Position p) {
+    this.position = p;
+  }
+
 }
