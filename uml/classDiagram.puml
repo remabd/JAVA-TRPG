@@ -1,0 +1,75 @@
+@startuml
+
+title TRPG
+
+package Health {
+  interface Healthy {
+    - int hp
+    + takeDamage(Weapon): void
+    + getHp(): int
+  }
+  class Monster {}
+  class Obstacle {}
+  class Player {
+    - int hp
+    - int mp
+    - int gold
+    - int level
+    - int xp
+    - Position position
+    - Weapon[] inventory
+  }
+}
+
+package Map {
+  class Position {
+      - int x
+      - int y
+      - isNextTo(Position): boolean
+    }
+  Interface Positionnable {
+    - Position poisition
+    - getPosition(): Position
+    - move(Position): void
+  }
+  class GameMap {
+      - int size
+      - int difficulty
+      - (Position: Tile[]) tiles
+      + resolve(): void
+    }
+  class Tile {
+      - Position position
+      - E event
+    }
+}
+
+package W {
+  abstract Weapon {
+      - String name
+      - int damage
+      - int rarity
+      - int level
+      + hit(): int
+    }
+  class Axe {}
+  class Bow {}
+  class Sword {}
+}
+
+class Shop {}
+
+Positionnable <|.. Tile
+Positionnable <|.. Healthy
+Positionnable <|.. Shop
+
+Healthy <|.. Player
+Healthy <|.. Monster
+Healthy <|.. Obstacle
+
+Weapon <|-- Axe
+Weapon <|-- Bow
+Weapon <|-- Sword
+
+
+@enduml

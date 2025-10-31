@@ -1,23 +1,30 @@
 package trpg.map;
 
-public class Tile<E> {
+public class Tile<E extends Positionnable> {
   private Position position;
   private E event;
 
-  public Tile() {
+  public Tile(Position p) {
+    this.position = p;
+    this.event = null;
   };
 
-  public Tile(E e, Position p) {
+  public Tile(Position p, E e) {
     this.position = p;
     this.event = e;
   }
 
-  public String toString() {
-    return "|_E_|";
+  public Position getPosition() {
+    return this.position;
   }
 
-  public String getEventType() {
-    return typeof(this.event);
-  }
+  // public String toString() {
+  //
+  // // return "|_E_|";
+  // }
+  //
+  // public String getEventType() {
+  // // return typeof(this.event);
+  // }
 
 }
