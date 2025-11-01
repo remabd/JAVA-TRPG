@@ -3,32 +3,16 @@ package trpg.healthy;
 import trpg.map.*;
 import trpg.weapon.*;
 
-public abstract class Healthy implements Positionnable {
+public abstract class Healthy extends Positionnable {
   public int hp;
   private Position position;
 
-  public Healthy() {
-  }
-
-  public Healthy(int hp) {
+  public Healthy(int hp, Position p) {
+    super(p);
     this.hp = hp;
   }
 
   public void takeDamage(Weapon w) {
     this.hp -= w.getDamage();
-  }
-
-  public Position getPosition() {
-    return this.position;
-  }
-
-  public void setPosition(Position p) {
-    this.position = p;
-  }
-
-  public void move(Position p) {
-    if (this.position.isNextTo(p)) {
-      this.setPosition(p);
-    }
   }
 }

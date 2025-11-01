@@ -8,13 +8,14 @@ public class Monster extends Healthy {
   private int damage;
   private Position position;
 
-  public Monster() {
-    super();
+  public Monster(int diff, Position p) {
+    int h = (int) Math.floor(Math.random() * 30 * diff);
+    this.damage = (int) Math.floor(Math.random() * 10 * diff);
+    super(h, p);
   }
 
-  public Monster(int damage) {
-    super();
-    this.damage = damage;
+  public int hit() {
+    return this.damage;
   }
 
   public void takeDamage(Weapon w) {

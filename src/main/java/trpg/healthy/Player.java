@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import trpg.map.*;
 import trpg.weapon.*;
 
-public class Player implements Positionnable {
+public class Player extends Healthy {
   private int hp;
   private int mp;
   private int gold;
@@ -15,7 +15,9 @@ public class Player implements Positionnable {
   private Position position;
   private ArrayList<Weapon> inventory;
 
-  public Player() {
+  public Player(int hp) {
+    Position p = new Position(0, 0);
+    super(hp, p);
   }
 
   public void buyWeapon(Weapon w, int price) {
@@ -36,13 +38,4 @@ public class Player implements Positionnable {
       this.weapon = w;
     }
   }
-
-  public Position getPosition() {
-    return this.position;
-  }
-
-  public void setPosition(Position p) {
-    this.position = p;
-  }
-
 }

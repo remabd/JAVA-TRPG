@@ -6,11 +6,12 @@ import java.util.Map;
 import trpg.map.*;
 import trpg.weapon.*;
 
-public class WeaponStore implements Positionnable {
+public class WeaponStore extends Positionnable {
   private ArrayList<Weapon> weapons;
   private Position position;
 
-  public WeaponStore() {
+  public WeaponStore(Position p) {
+    super(p);
   }
 
   public ArrayList<Weapon> showShop() {
@@ -19,13 +20,5 @@ public class WeaponStore implements Positionnable {
 
   public void sell(Weapon w) {
     this.weapons.remove(this.weapons.indexOf(w));
-  }
-
-  public void setPosition(Position p) {
-    this.position = p;
-  }
-
-  public Position getPosition() {
-    return this.position;
   }
 }

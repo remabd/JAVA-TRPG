@@ -2,10 +2,24 @@ package trpg.map;
 
 import trpg.map.Position;
 
-public interface Positionnable {
-  public Position position = new Position();
+public abstract class Positionnable {
+  private Position position;
 
-  public Position getPosition();
+  public Positionnable(Position p) {
+    this.position = p;
+  }
 
-  public void setPosition(Position p);
+  public Position getPosition() {
+    return this.position;
+  }
+
+  public void setPosition(Position p) {
+    this.position = p;
+  }
+
+  public void move(Position p) {
+    if (this.position.isNextTo(p)) {
+      this.position = p;
+    }
+  }
 }
