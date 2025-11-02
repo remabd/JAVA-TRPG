@@ -29,10 +29,18 @@ public class Position {
     return false;
   }
 
-  public boolean equals(Position p) {
-    if (this.x == p.getPosition()[0] && this.y == p.getPosition()[1]) {
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
       return true;
-    }
-    return false;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Position position = (Position) o;
+    return x == position.x && y == position.y;
+  }
+
+  @Override
+  public int hashCode() {
+    return 31 * x + y;
   }
 }

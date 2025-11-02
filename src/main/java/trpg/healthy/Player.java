@@ -15,8 +15,9 @@ public class Player extends Healthy {
   private Position position;
   private ArrayList<Weapon> inventory;
 
-  public Player(int hp) {
+  public Player(int hp, Weapon w) {
     Position p = new Position(0, 0);
+    this.weapon = w;
     super(hp, p);
   }
 
