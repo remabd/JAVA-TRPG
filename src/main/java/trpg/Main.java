@@ -25,7 +25,6 @@ public class Main {
       System.out.println("Enter class");
       classe = scanner.nextLine();
     } while (!Arrays.asList(classes).contains(classe));
-
     Player player;
     switch (classe) {
       case "Humain":
@@ -48,6 +47,56 @@ public class Main {
 
     GameMap gameMap = new GameMap(size, difficulty, player);
     gameMap.display();
+
+    while (player.isAlive() || player.getPosition().equals(new Position(size, size))) {
+      Position playerPosition = player.getPosition();
+      System.out.println("Où voulez vous aller ?");
+      System.out.println("Gauche: 1, Haut: 2, Droite: 3, Bas: 4, Abandonner: 5");
+      int action = Integer.parseInt(scanner.nextLine());
+      switch (action) {
+        case 1:
+          if (playerPosition.getPosition()[0] == 0) {
+            System.out.println("Vous ne pouvez pas allez là");
+          } else {
+            player.move(playerPosition.shiftGauche());
+          }
+          gameMap.resolve(player.getPosition());
+          break;
+        case 2:
+          if (playerPosition.getPosition()[1] == 0) {
+            System.out.println("Vous ne pouvez pas allez là");
+          } else {
+            player.move(playerPosition.shiftHaut());
+          }
+          gameMap.resolve(player.getPosition());
+          break;
+        case 3:
+          if (playerPosition.getPosition()[0] == size) {
+            System.out.println("Vous ne pouvez pas allez là");
+          } else {
+            player.move(playerPosition.shiftDroite());
+          }
+          gameMap.resolve(player.getPosition());
+          break;
+        case 4:
+          if (playerPosition.getPosition()[1] == size) {
+            System.out.println("Vous ne pouvez pas allez là");
+          } else {
+            player.move(playerPosition.shiftBas());
+          }
+          gameMap.resolve(player.getPosition());
+          break;
+        default:
+          System.out.println("Erreur lors du déplacement");
+          break;
+      }
+    }
+
+    if (!player.isAlive()) {
+      System.out.println("Game Over !");
+    } else {
+      System.out.println("Victoire !");
+    }
 
   }
 }

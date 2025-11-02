@@ -29,6 +29,22 @@ public class Position {
     return false;
   }
 
+  public Position shiftGauche() {
+    return new Position(this.getPosition()[0] - 1, this.getPosition()[1]);
+  }
+
+  public Position shiftHaut() {
+    return new Position(this.getPosition()[0], this.getPosition()[1] + 1);
+  }
+
+  public Position shiftDroite() {
+    return new Position(this.getPosition()[0] + 1, this.getPosition()[1]);
+  }
+
+  public Position shiftBas() {
+    return new Position(this.getPosition()[0], this.getPosition()[1] - 1);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o)

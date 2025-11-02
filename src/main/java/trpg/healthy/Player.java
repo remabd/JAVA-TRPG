@@ -39,4 +39,8 @@ public class Player extends Healthy {
       this.weapon = w;
     }
   }
+
+  public boolean isAlive() {
+    return this.hp > 0;
+  }
 }

@@ -49,7 +49,9 @@ public class GameMap {
     this.tiles.put(new Position(this.size, this.size), null);
   }
 
-  private void resolve() {
+  public void resolve(Position p) {
+    Positionnable event = this.tiles.get(p);
+
   }
 
   public void display() {
