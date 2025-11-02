@@ -15,4 +15,8 @@ public abstract class Healthy extends Positionnable {
   public void takeDamage(Weapon w) {
     this.hp -= w.getDamage();
   }
+
+  public boolean isAlive() {
+    return this.hp > 0;
+  }
 }

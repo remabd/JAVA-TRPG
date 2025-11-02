@@ -14,8 +14,8 @@ public class Monster extends Healthy {
     super(h, p);
   }
 
-  public int hit() {
-    return this.damage;
+  public void hit(Player p) {
+    p.getHit(this.damage);
   }
 
   public void takeDamage(Weapon w) {

@@ -40,7 +40,15 @@ public class Player extends Healthy {
     }
   }
 
-  public boolean isAlive() {
-    return this.hp > 0;
+  public void getHit(int damage) {
+    this.hp -= damage;
+  }
+
+  public int getHp() {
+    return this.hp;
+  }
+
+  public void hit(Healthy target) {
+    target.takeDamage(this.weapon);
   }
 }

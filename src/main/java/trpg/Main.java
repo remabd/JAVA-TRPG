@@ -60,7 +60,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftGauche());
           }
-          gameMap.resolve(player.getPosition());
+          gameMap.resolve(playerPosition);
           break;
         case 2:
           if (playerPosition.getPosition()[1] == 0) {
@@ -68,7 +68,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftHaut());
           }
-          gameMap.resolve(player.getPosition());
+          gameMap.resolve(playerPosition);
           break;
         case 3:
           if (playerPosition.getPosition()[0] == size) {
@@ -76,7 +76,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftDroite());
           }
-          gameMap.resolve(player.getPosition());
+          gameMap.resolve(playerPosition);
           break;
         case 4:
           if (playerPosition.getPosition()[1] == size) {
@@ -84,12 +84,16 @@ public class Main {
           } else {
             player.move(playerPosition.shiftBas());
           }
-          gameMap.resolve(player.getPosition());
+          gameMap.resolve(playerPosition);
           break;
+        case 5:
+          System.out.println("Abandon ! Fin du jeu");
+          return;
         default:
           System.out.println("Erreur lors du déplacement");
           break;
       }
+      gameMap.display();
     }
 
     if (!player.isAlive()) {

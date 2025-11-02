@@ -50,8 +50,34 @@ public class GameMap {
   }
 
   public void resolve(Position p) {
-    Positionnable event = this.tiles.get(p);
-
+    this.tiles.put(p, null);
+    Positionnable event = this.tiles.get(this.player.getPosition());
+    if (event instanceof Monster) {
+      Monster monstre = (Monster) event;
+      while (this.player.isAlive() && monstre.isAlive()) {
+        this.player.hit(monstre);
+        if (monstre.isAlive()) {
+          monstre.hit(this.player);
+        }
+      }
+      if (this.player.isAlive()) {
+        System.out.println("Le monstre est mort, il vous reste " + this.player.getHp() + " points de vie.");
+      } else {
+        System.out.println("Vous êtes mort.");
+        return;
+      }
+    } else if (event instanceof Obstacle) {
+      Obstacle obstacle = (Obstacle) event;
+      int counter = 0;
+      while (obstacle.isAlive()) {
+        this.player.hit(obstacle);
+        counter++;
+      }
+      System.out.println("L'obstacle a été détruit en " + counter + " coups.");
+    } else if (event instanceof WeaponStore) {
+      WeaponStore store = (WeaponStore) event;
+    }
+    this.tiles.put(p, this.player);
   }
 
   public void display() {
