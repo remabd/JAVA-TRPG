@@ -57,18 +57,7 @@ public class GameMap {
     if (event == null) {
       return;
     } else {
-      if (event instanceof Monster) {
-        Monster monstre = (Monster) event;
-        this.eventResolver.Fight(this.player, monstre);
-        this.tiles.put(p, null);
-      } else if (event instanceof Obstacle) {
-        Obstacle obstacle = (Obstacle) event;
-        this.eventResolver.destroyObstacle(this.player, obstacle);
-        this.tiles.put(p, null);
-      } else if (event instanceof WeaponStore) {
-        WeaponStore store = (WeaponStore) event;
-        this.eventResolver.shopItems(this.player, store);
-      }
+      event.resolveEncounter(this.player);
     }
   }
 
@@ -84,27 +73,17 @@ public class GameMap {
             map += " P ";
           } else {
             Positionnable e = tiles.get(new Position(j, i));
-            map += tileSymbol(e);
+            if (e == null) {
+              map += " . ";
+            } else {
+              map += e.getSymbol();
+            }
           }
         }
       }
       map += "\n";
     }
     System.out.println(map);
-  }
-
-  private String tileSymbol(Positionnable e) {
-    if (e == null) {
-      return " . ";
-    } else {
-      if (e instanceof Monster)
-        return " M ";
-      if (e instanceof Obstacle)
-        return " O ";
-      if (e instanceof WeaponStore)
-        return " S ";
-      return " . ";
-    }
   }
 
   public void move(Positionnable positionnable, Position newPosition) {

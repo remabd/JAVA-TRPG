@@ -6,7 +6,12 @@ Ce repository simule un RPG textuel
 
 Après clonage: 
 ```
-cd Java-TRPG
+cd JAVA-TRPG
 javac -d bin src/main/java/trpg/*.java
 java -cp bin trpg.Main
+```
+Ou alors:
+```
+cd JAVA-TRPG
+sh buildAndRun.sh
 ```

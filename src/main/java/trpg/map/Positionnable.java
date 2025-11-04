@@ -1,6 +1,7 @@
 package trpg.map;
 
 import trpg.map.Position;
+import trpg.healthy.Player;
 
 public abstract class Positionnable {
   private Position position;
@@ -22,4 +23,8 @@ public abstract class Positionnable {
       this.position = p;
     }
   }
+
+  public abstract void resolveEncounter(Player player);
+
+  public abstract String getSymbol();
 }

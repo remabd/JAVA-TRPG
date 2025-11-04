@@ -26,7 +26,9 @@ public class Player extends Healthy {
   }
 
   public void gainGold(int amount) {
+    System.out.println("Vous avez gagné " + amount + "g.");
     this.gold += amount;
+    System.out.println("Vous avez " + this.gold + "g.");
   }
 
   public void spendGold(int amount) {
@@ -40,4 +42,27 @@ public class Player extends Healthy {
   public void hit(Healthy target) {
     target.takeDamage(this.weapon);
   }
+
+  public void showInformation() {
+    System.out.println("Points de vie: " + this.hp);
+    System.out.println("Niveau: " + this.lvl);
+    System.out.println("Arme équipée: " + this.weapon.toString());
+  }
+
+  public void gainXP(int xp) {
+    System.out.println("Vous avez gagné " + xp + " points d'experiences");
+    this.xp += xp;
+    if (xp >= lvl * 10) {
+      this.xp -= lvl * 10;
+      this.lvl++;
+      System.out.println("Vous avez gagné un niveau, vous êtes niveau " + this.lvl);
+    }
+  }
+
+  public String getSymbol() {
+    return " P ";
+  }
+
+  public void resolveEncounter(Player player) {
+  };
 }

@@ -2,11 +2,14 @@ package trpg;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 
+import trpg.healthy.Player;
 import trpg.map.*;
 import trpg.weapon.*;
 
 public class WeaponStore extends Positionnable {
+  private Scanner scanner;
   private ArrayList<Weapon> weapons;
   private Position position;
 
@@ -14,6 +17,7 @@ public class WeaponStore extends Positionnable {
     super(p);
     this.weapons = new ArrayList<Weapon>();
     this.initialize();
+    this.scanner = new Scanner(System.in);
   }
 
   private void initialize() {
@@ -57,5 +61,31 @@ public class WeaponStore extends Positionnable {
 
   public void sell(Weapon w) {
     this.weapons.remove(this.weapons.indexOf(w));
+  }
+
+  public void resolveEncounter(Player player) {
+    boolean next = false;
+    do {
+      this.showShop();
+      System.out.println("Vous avez " + player.getGold() + "g.");
+      System.out.println("Quel item voulez vous acheter ? (0 pour sortir).");
+      int choice = Integer.parseInt(this.scanner.nextLine());
+      if (choice == 0) {
+        next = true;
+      } else {
+        Weapon w = this.getShop().get(choice - 1);
+        if (player.getGold() >= w.getPrice()) {
+          player.swapWeapon(w);
+          player.spendGold(w.getPrice());
+          System.out.println("Arme achetée, il vous reste " + player.getGold() + "g.");
+        } else {
+          System.out.println("Pas assez d'argent");
+        }
+      }
+    } while (!next);
+  }
+
+  public String getSymbol() {
+    return " S ";
   }
 }

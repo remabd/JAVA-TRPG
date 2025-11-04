@@ -19,4 +19,29 @@ public class Monster extends Healthy {
   public void takeDamage(Weapon w) {
     this.hp -= w.getDamage();
   }
+
+  public void resolveEncounter(Player player) {
+    System.out.println("Un monstre se dresse devant vous. Préparez vous au combat !");
+    while (player.isAlive() && this.isAlive()) {
+      player.hit(this);
+      if (player.isAlive()) {
+        this.hit(player);
+      }
+    }
+    if (!this.isAlive()) {
+      System.out.println("Le monstre est mort");
+      System.out.println("Il vous reste " + player.getHp() + " points de vie");
+      int gold = 20 + (int) Math.floor(Math.random() * 20);
+      int xp = 20 + (int) Math.floor(Math.random() * 20);
+      player.gainGold(gold);
+      player.gainXP(xp);
+    } else {
+      System.out.println("Vous êtes mort");
+      return;
+    }
+  }
+
+  public String getSymbol() {
+    return " M ";
+  }
 }
