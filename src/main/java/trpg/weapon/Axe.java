@@ -18,4 +18,8 @@ public class Axe extends Weapon {
     // " || \n" +
     // " - \n";
   }
+
+  public String toString() {
+    return "Hache: " + super.toString();
+  }
 }

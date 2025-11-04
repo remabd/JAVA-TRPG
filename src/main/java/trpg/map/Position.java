@@ -34,7 +34,7 @@ public class Position {
   }
 
   public Position shiftHaut() {
-    return new Position(this.getPosition()[0], this.getPosition()[1] + 1);
+    return new Position(this.getPosition()[0], this.getPosition()[1] - 1);
   }
 
   public Position shiftDroite() {
@@ -42,7 +42,7 @@ public class Position {
   }
 
   public Position shiftBas() {
-    return new Position(this.getPosition()[0], this.getPosition()[1] - 1);
+    return new Position(this.getPosition()[0], this.getPosition()[1] + 1);
   }
 
   @Override
@@ -58,5 +58,9 @@ public class Position {
   @Override
   public int hashCode() {
     return 31 * x + y;
+  }
+
+  public String toString() {
+    return "(" + x + ", " + y + ")";
   }
 }

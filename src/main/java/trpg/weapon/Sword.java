@@ -11,4 +11,8 @@ public class Sword extends Weapon {
   public String asciiArt() {
     return "Sword";
   }
+
+  public String toString() {
+    return "Épée: " + super.toString();
+  }
 }

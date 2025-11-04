@@ -16,6 +16,7 @@ public class GameMap {
   private int difficulty;
   private HashMap<Position, Positionnable> tiles;
   private Player player;
+  private EventResolver eventResolver;
 
   public GameMap() {
   };
@@ -24,6 +25,7 @@ public class GameMap {
     this.size = s;
     this.difficulty = d;
     this.player = p;
+    this.eventResolver = new EventResolver();
     this.initialize();
   }
 
@@ -45,39 +47,29 @@ public class GameMap {
         }
       }
     }
-    this.tiles.put(new Position(0, 0), this.player);
+    this.tiles.put(new Position(0, 0), null);
     this.tiles.put(new Position(this.size, this.size), null);
   }
 
-  public void resolve(Position p) {
+  public void resolvePosition(Position p) {
     this.tiles.put(p, null);
     Positionnable event = this.tiles.get(this.player.getPosition());
-    if (event instanceof Monster) {
-      Monster monstre = (Monster) event;
-      while (this.player.isAlive() && monstre.isAlive()) {
-        this.player.hit(monstre);
-        if (monstre.isAlive()) {
-          monstre.hit(this.player);
-        }
+    if (event == null) {
+      return;
+    } else {
+      if (event instanceof Monster) {
+        Monster monstre = (Monster) event;
+        this.eventResolver.Fight(this.player, monstre);
+        this.tiles.put(p, null);
+      } else if (event instanceof Obstacle) {
+        Obstacle obstacle = (Obstacle) event;
+        this.eventResolver.destroyObstacle(this.player, obstacle);
+        this.tiles.put(p, null);
+      } else if (event instanceof WeaponStore) {
+        WeaponStore store = (WeaponStore) event;
+        this.eventResolver.shopItems(this.player, store);
       }
-      if (this.player.isAlive()) {
-        System.out.println("Le monstre est mort, il vous reste " + this.player.getHp() + " points de vie.");
-      } else {
-        System.out.println("Vous êtes mort.");
-        return;
-      }
-    } else if (event instanceof Obstacle) {
-      Obstacle obstacle = (Obstacle) event;
-      int counter = 0;
-      while (obstacle.isAlive()) {
-        this.player.hit(obstacle);
-        counter++;
-      }
-      System.out.println("L'obstacle a été détruit en " + counter + " coups.");
-    } else if (event instanceof WeaponStore) {
-      WeaponStore store = (WeaponStore) event;
     }
-    this.tiles.put(p, this.player);
   }
 
   public void display() {
@@ -88,8 +80,12 @@ public class GameMap {
         if (i == size - 1 && j == size - 1) {
           map += " E ";
         } else {
-          Positionnable p = tiles.get(new Position(j, i));
-          map += tileSymbol(p);
+          if (new Position(j, i).equals(this.player.getPosition())) {
+            map += " P ";
+          } else {
+            Positionnable e = tiles.get(new Position(j, i));
+            map += tileSymbol(e);
+          }
         }
       }
       map += "\n";
@@ -97,17 +93,15 @@ public class GameMap {
     System.out.println(map);
   }
 
-  private String tileSymbol(Positionnable p) {
-    if (p == null) {
+  private String tileSymbol(Positionnable e) {
+    if (e == null) {
       return " . ";
     } else {
-      if (p instanceof Player)
-        return " P ";
-      if (p instanceof Monster)
+      if (e instanceof Monster)
         return " M ";
-      if (p instanceof Obstacle)
+      if (e instanceof Obstacle)
         return " O ";
-      if (p instanceof WeaponStore)
+      if (e instanceof WeaponStore)
         return " S ";
       return " . ";
     }

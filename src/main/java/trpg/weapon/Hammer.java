@@ -9,4 +9,9 @@ public class Hammer extends Weapon {
   public String asciiArt() {
     return "Hammer";
   }
+
+  public String toString() {
+    return "Marteau: " + super.toString();
+  }
+
 }

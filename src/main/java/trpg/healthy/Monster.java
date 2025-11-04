@@ -4,9 +4,7 @@ import trpg.map.*;
 import trpg.weapon.*;
 
 public class Monster extends Healthy {
-  private int hp;
-  private int damage;
-  private Position position;
+  public int damage;
 
   public Monster(int diff, Position p) {
     int h = (int) Math.floor(Math.random() * 30 * diff);
@@ -15,7 +13,7 @@ public class Monster extends Healthy {
   }
 
   public void hit(Player p) {
-    p.getHit(this.damage);
+    p.takeDamage(this.damage);
   }
 
   public void takeDamage(Weapon w) {

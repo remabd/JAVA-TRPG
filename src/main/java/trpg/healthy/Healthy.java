@@ -19,4 +19,8 @@ public abstract class Healthy extends Positionnable {
   public boolean isAlive() {
     return this.hp > 0;
   }
+
+  public int getHp() {
+    return this.hp;
+  }
 }

@@ -3,9 +3,10 @@ package trpg.weapon;
 public abstract class Weapon {
   private int damage;
   private int price;
-  private int rarity;
 
   public Weapon() {
+    this.damage = (int) Math.floor(Math.random() * 15);
+    this.price = (int) Math.floor(Math.random() * 35);
   }
 
   public int getDamage() {
@@ -17,4 +18,8 @@ public abstract class Weapon {
   }
 
   public abstract String asciiArt();
+
+  public String toString() {
+    return this.damage + "Atk, " + this.price + "g.";
+  }
 }

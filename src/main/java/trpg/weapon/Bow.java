@@ -18,4 +18,8 @@ public class Bow extends Weapon {
     // " \| \n"
     // ;
   }
+
+  public String toString() {
+    return "Arc: " + super.toString();
+  }
 }

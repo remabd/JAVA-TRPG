@@ -48,7 +48,7 @@ public class Main {
     GameMap gameMap = new GameMap(size, difficulty, player);
     gameMap.display();
 
-    while (player.isAlive() || player.getPosition().equals(new Position(size, size))) {
+    while (player.isAlive() && !player.getPosition().equals(new Position(size - 1, size - 1))) {
       Position playerPosition = player.getPosition();
       System.out.println("Où voulez vous aller ?");
       System.out.println("Gauche: 1, Haut: 2, Droite: 3, Bas: 4, Abandonner: 5");
@@ -60,7 +60,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftGauche());
           }
-          gameMap.resolve(playerPosition);
+          gameMap.resolvePosition(playerPosition);
           break;
         case 2:
           if (playerPosition.getPosition()[1] == 0) {
@@ -68,7 +68,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftHaut());
           }
-          gameMap.resolve(playerPosition);
+          gameMap.resolvePosition(playerPosition);
           break;
         case 3:
           if (playerPosition.getPosition()[0] == size) {
@@ -76,7 +76,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftDroite());
           }
-          gameMap.resolve(playerPosition);
+          gameMap.resolvePosition(playerPosition);
           break;
         case 4:
           if (playerPosition.getPosition()[1] == size) {
@@ -84,7 +84,7 @@ public class Main {
           } else {
             player.move(playerPosition.shiftBas());
           }
-          gameMap.resolve(playerPosition);
+          gameMap.resolvePosition(playerPosition);
           break;
         case 5:
           System.out.println("Abandon ! Fin du jeu");
