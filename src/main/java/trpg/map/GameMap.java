@@ -35,7 +35,7 @@ public class GameMap {
     for (int j = 0; j < this.size; j++) {
       for (int i = 0; i < this.size; i++) {
         Position p = new Position(j, i);
-        int r = (int) Math.floor(Math.random() * 10);
+        int r = NumberUtil.randomNbr(0, 11);
         if (r <= 2) {
           this.tiles.put(p, new Monster(this.difficulty, p));
         } else if (r <= 4) {

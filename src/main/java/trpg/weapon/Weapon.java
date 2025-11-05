@@ -1,12 +1,14 @@
 package trpg.weapon;
 
+import trpg.NumberUtil;
+
 public abstract class Weapon {
   private int damage;
   private int price;
 
   public Weapon() {
-    this.damage = (int) Math.floor(Math.random() * 15);
-    this.price = (int) Math.floor(Math.random() * 35);
+    this.damage = NumberUtil.randomNbr(10, 20);
+    this.price = NumberUtil.randomNbr(30, 40);
   }
 
   public int getDamage() {

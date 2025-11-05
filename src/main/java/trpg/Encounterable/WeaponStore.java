@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+import trpg.NumberUtil;
 import trpg.healthy.Player;
 import trpg.map.*;
 import trpg.weapon.*;
@@ -21,9 +22,9 @@ public class WeaponStore extends Positionnable {
   }
 
   private void initialize() {
-    int nbWeapons = (int) Math.floor(Math.random() * 6);
+    int nbWeapons = NumberUtil.randomNbr(1, 7);
     for (int i = 0; i < nbWeapons; i++) {
-      int typeWeapon = (int) Math.floor(Math.random() * 4);
+      int typeWeapon = NumberUtil.randomNbr(0, 4);
       Weapon w;
       switch (typeWeapon) {
         case 0:

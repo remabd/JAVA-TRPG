@@ -7,7 +7,7 @@ public class Elf extends Player {
 
   public Elf() {
     Weapon w = new Bow();
-    int hp = (int) Math.floor(Math.random() * 40);
+    int hp = NumberUtil.randomNbr(40, 60);
     super(hp, w);
   }
 }
