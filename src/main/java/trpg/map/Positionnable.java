@@ -14,10 +14,6 @@ public abstract class Positionnable {
     return this.position;
   }
 
-  public void setPosition(Position p) {
-    this.position = p;
-  }
-
   public void move(Position p) {
     if (this.position.isNextTo(p)) {
       this.position = p;

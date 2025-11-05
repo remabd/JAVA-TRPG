@@ -1,11 +1,12 @@
 package trpg.healthy;
 
 import trpg.weapon.*;
+import trpg.NumberUtil;
 import trpg.map.*;
 
 public class Obstacle extends Healthy {
   public Obstacle(Position p) {
-    int h = (int) Math.floor(Math.random() * 60);
+    int h = NumberUtil.randomNbr(60, 80);
     super(h, p);
   }
 

@@ -10,13 +10,14 @@ import trpg.*;
 import trpg.healthy.*;
 import trpg.map.Position;
 import trpg.map.Positionnable;
+import trpg.encounterable.WeaponStore;
+import trpg.encounterable.Fontain;
 
 public class GameMap {
   private int size;
   private int difficulty;
   private HashMap<Position, Positionnable> tiles;
   private Player player;
-  private EventResolver eventResolver;
 
   public GameMap() {
   };
@@ -25,7 +26,6 @@ public class GameMap {
     this.size = s;
     this.difficulty = d;
     this.player = p;
-    this.eventResolver = new EventResolver();
     this.initialize();
   }
 
@@ -42,6 +42,8 @@ public class GameMap {
           this.tiles.put(p, new Obstacle(p));
         } else if (r == 5) {
           this.tiles.put(p, new WeaponStore(p));
+        } else if (r == 6) {
+          this.tiles.put(p, new Fontain(p));
         } else {
           this.tiles.put(new Position(i % this.size, i / this.size), null);
         }

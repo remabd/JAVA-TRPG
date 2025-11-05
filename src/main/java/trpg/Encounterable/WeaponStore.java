@@ -1,4 +1,4 @@
-package trpg;
+package trpg.encounterable;
 
 import java.util.ArrayList;
 import java.util.Map;

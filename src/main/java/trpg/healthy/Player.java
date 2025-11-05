@@ -7,6 +7,7 @@ import trpg.weapon.*;
 
 public class Player extends Healthy {
   private int gold;
+  private int maxHP;
   private int lvl;
   private int xp;
   public Weapon weapon;
@@ -14,6 +15,7 @@ public class Player extends Healthy {
   public Player(int hp, Weapon w) {
     Position p = new Position(0, 0);
     this.weapon = w;
+    this.maxHP = hp;
     super(hp, p);
   }
 
@@ -55,8 +57,18 @@ public class Player extends Healthy {
     if (xp >= lvl * 10) {
       this.xp -= lvl * 10;
       this.lvl++;
+      this.maxHP += 5;
+      this.heal(this.getMissingHP());
       System.out.println("Vous avez gagné un niveau, vous êtes niveau " + this.lvl);
     }
+  }
+
+  public void heal(int amount) {
+    this.hp += amount;
+  }
+
+  public int getMissingHP() {
+    return this.maxHP - this.hp;
   }
 
   public String getSymbol() {

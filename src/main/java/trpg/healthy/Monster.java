@@ -2,13 +2,14 @@ package trpg.healthy;
 
 import trpg.map.*;
 import trpg.weapon.*;
+import trpg.NumberUtil;
 
 public class Monster extends Healthy {
   public int damage;
 
   public Monster(int diff, Position p) {
-    int h = (int) Math.floor(Math.random() * 30 * diff);
-    this.damage = (int) Math.floor(Math.random() * 10 * diff);
+    int h = NumberUtil.randomNbr(30, 50);
+    this.damage = NumberUtil.randomNbr(10, 15);
     super(h, p);
   }
 
@@ -31,8 +32,8 @@ public class Monster extends Healthy {
     if (!this.isAlive()) {
       System.out.println("Le monstre est mort");
       System.out.println("Il vous reste " + player.getHp() + " points de vie");
-      int gold = 20 + (int) Math.floor(Math.random() * 20);
-      int xp = 20 + (int) Math.floor(Math.random() * 20);
+      int gold = NumberUtil.randomNbr(20, 30);
+      int xp = NumberUtil.randomNbr(10, 15);
       player.gainGold(gold);
       player.gainXP(xp);
     } else {
