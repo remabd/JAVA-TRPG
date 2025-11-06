@@ -10,9 +10,9 @@ Le code s'articule autour de 5 packages:
 ### map
 
 Ce package comprend les classes GameMap, Position et Positionnable.
-- Position définit la position sur la carte et quelques méthodes indispensables.
-- Positionnable est une classe abstraite qui petmet à tous les éléments positionnables sur la carte de l'étendre. Elle oblige également la définition des méthodes liées à l'affichage sur la carte, ainsi que la résolution de l'évenement liée à la rencontre du joueur.
-- GameMap crée la carte du jeu et implémente quelques méthodes essentielles, comme l'affichage ou la resolution du déplacement du joueur.
+- `Position` définit la position sur la carte et quelques méthodes indispensables.
+- `Positionnable` est une classe abstraite qui petmet à tous les éléments positionnables sur la carte de l'étendre. Elle oblige également la définition des méthodes liées à l'affichage sur la carte, ainsi que la résolution de l'évenement liée à la rencontre du joueur.
+- `GameMap` crée la carte du jeu et implémente quelques méthodes essentielles, comme l'affichage ou la resolution du déplacement du joueur.
 
 ### healthy
 
