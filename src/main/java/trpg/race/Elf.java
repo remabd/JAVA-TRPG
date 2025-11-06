@@ -2,6 +2,7 @@ package trpg.race;
 
 import trpg.healthy.*;
 import trpg.weapon.*;
+import trpg.NumberUtil;
 
 public class Elf extends Player {
 
