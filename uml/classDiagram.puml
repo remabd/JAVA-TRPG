@@ -2,8 +2,8 @@
 
 title TRPG
 
-package Health {
-  interface Healthy {
+package health {
+  abstract Healthy {
     - int hp
     + takeDamage(Weapon): void
     + getHp(): int
@@ -11,65 +11,90 @@ package Health {
   class Monster {}
   class Obstacle {}
   class Player {
-    - int hp
-    - int mp
+    - int maxHP 
     - int gold
     - int level
     - int xp
-    - Position position
     - Weapon[] inventory
   }
+
+  class Orc {}
+  class Elf {}
+  class Dwarf {}
+  class Human {}
 }
 
-package Map {
+Orc --|> Player
+Elf --|> Player
+Dwarf --|> Player
+Human --|> Player
+
+package map {
   class Position {
       - int x
       - int y
       - isNextTo(Position): boolean
+      - getPosition(): Position
+      - shiftGauche(): void
+      - shiftDroite(): void
+      - shiftBas(): void
+      - shiftHaut(): void
     }
-  Interface Positionnable {
+
+   abstract Positionnable {
     - Position poisition
     - getPosition(): Position
     - move(Position): void
+    - {abstract} resolveEncounter(Player): void
+    - {abstract} getSymbol(): String
   }
   class GameMap {
       - int size
       - int difficulty
-      - (Position: Tile[]) tiles
-      + resolve(): void
-    }
-  class Tile {
-      - Position position
-      - E event
+      - (Position: Positionnable) tiles
+      - player: Player
+      - initialize(): void
+      + resolvePosition(): void
     }
 }
 
-package W {
+package weapon {
   abstract Weapon {
-      - String name
-      - int damage
-      - int rarity
-      - int level
-      + hit(): int
+      - damage: Int
+      - price: Int
+      + getDamage(): Int
+      + getPrice(): Int
     }
   class Axe {}
   class Bow {}
   class Sword {}
+  class Hammer {}
+}
+package encounterable {
+  class Fontain {
+    - charges: Int
+  }
+  class Shop {
+    - weapons: Weapon[]
+    - initialize(): void
+    + getShop(): Weapon[]
+    + showShop(): void
+    + sell(Weapon): void
+  }
 }
 
-class Shop {}
+Positionnable <|-- Healthy
+Positionnable <|-- Shop
+Positionnable <|-- Fontain
 
-Positionnable <|.. Tile
-Positionnable <|.. Healthy
-Positionnable <|.. Shop
-
-Healthy <|.. Player
-Healthy <|.. Monster
-Healthy <|.. Obstacle
+Healthy <|-- Player
+Healthy <|-- Monster
+Healthy <|-- Obstacle
 
 Weapon <|-- Axe
 Weapon <|-- Bow
 Weapon <|-- Sword
+Weapon <|-- Hammer
 
 
 @enduml

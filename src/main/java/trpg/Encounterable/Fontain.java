@@ -9,10 +9,13 @@ public class Fontain extends Positionnable {
 
   public Fontain(Position p) {
     super(p);
+    this.charges = 3;
   }
 
   public void resolveEncounter(Player player) {
     player.heal(player.getMissingHP());
+    this.charges--;
+    System.out.println("Vous êtes soigné, il reste " + this.charges + " charges à la fontaine");
   }
 
   public String getSymbol() {

@@ -3,6 +3,7 @@ Monster:
 XP: 10-15 pts
 Atk: 10-20pts
 HP:30-50pts
+gold: 20-30
 
 Player:
 HP:
@@ -15,4 +16,7 @@ XP:
   lvl2: 20pts
   lvl3: 30pts
 Atk: 10-20pts
+
+Weapon:
+  cost:30-40
 

@@ -12,7 +12,6 @@ import trpg.weapon.*;
 public class WeaponStore extends Positionnable {
   private Scanner scanner;
   private ArrayList<Weapon> weapons;
-  private Position position;
 
   public WeaponStore(Position p) {
     super(p);

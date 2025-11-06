@@ -51,7 +51,7 @@ public class Main {
     while (player.isAlive() && !player.getPosition().equals(new Position(size - 1, size - 1))) {
       Position playerPosition = player.getPosition();
       System.out.println("Où voulez vous aller ?");
-      System.out.println("Gauche: 1, Haut: 2, Droite: 3, Bas: 4, Abandonner: 5");
+      System.out.println("Gauche: 1, Haut: 2, Droite: 3, Bas: 4, Abandonner: 5, Récap personnage: 6");
       int action = Integer.parseInt(scanner.nextLine());
       switch (action) {
         case 1:
@@ -89,6 +89,9 @@ public class Main {
         case 5:
           System.out.println("Abandon ! Fin du jeu");
           return;
+        case 6:
+          player.showInformation();
+          break;
         default:
           System.out.println("Erreur lors du déplacement");
           break;
